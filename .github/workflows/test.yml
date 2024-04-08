@@ -28,9 +28,6 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
-      - name: Rubocop lint
-        run: bundle exec rubocop
-
       - name: Install Bundler dependencies
         run: bundle install
 
@@ -62,3 +59,17 @@ jobs:
 
       - name: Test Rack
         run: bundle exec appraisal rack rake spec:integration:rack
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+
+      - name: Rubocop lint
+        run: bundle exec rubocop
