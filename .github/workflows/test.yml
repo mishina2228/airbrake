@@ -66,6 +66,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Update package list
+        run: sudo apt-get update
+
+      - name: Install cURL Headers
+        run: sudo apt-get install libcurl4 libcurl4-openssl-dev
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
